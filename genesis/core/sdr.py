@@ -16,7 +16,7 @@ class SDR:
 
     def __init__(self, active_indices: Optional[list] = None):
         self.words: np.ndarray = np.zeros(SDR_WORDS, dtype=np.uint64)
-        if active_indices:
+        if active_indices is not None and len(active_indices) > 0:
             for idx in active_indices:
                 idx = int(idx) % SDR_BITS
                 word, bit = divmod(idx, 64)
@@ -31,18 +31,11 @@ class SDR:
         return cls()
 
     def active_indices(self) -> list:
-        result = []
-        for w in range(SDR_WORDS):
-            word = int(self.words[w])
-            if word == 0:
-                continue
-            for b in range(64):
-                if word & (1 << b):
-                    result.append(w * 64 + b)
-        return result
+        bits = np.unpackbits(self.words.view(np.uint8), bitorder='little')
+        return list(np.nonzero(bits)[0])
 
     def popcount(self) -> int:
-        return sum(bin(int(w)).count("1") for w in self.words)
+        return int(np.bitwise_count(self.words).sum())
 
     def similarity(self, other: "SDR") -> float:
         """Jaccard similarity via bitwise AND/OR."""
