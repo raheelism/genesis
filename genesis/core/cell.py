@@ -19,6 +19,9 @@ class Rule:
     postcondition: SDR
     confidence: float = 0.3
 
+    def __post_init__(self):
+        self.confidence = max(0.0, min(1.0, self.confidence))
+
 
 @dataclass
 class Cell:
@@ -43,6 +46,8 @@ class Cell:
 
     def add_rule(self, precondition: SDR, postcondition: SDR,
                  confidence: float = 0.3) -> Rule:
+        """Add a causal rule. Caller is responsible for checking len(rules) < MAX_RULES
+        before calling — lifecycle.py handles division when the limit is exceeded."""
         rule = Rule(precondition=precondition, postcondition=postcondition,
                     confidence=confidence)
         self.rules.append(rule)
@@ -50,5 +55,6 @@ class Cell:
 
     def update_fitness(self, signal: float):
         """Exponential moving average update toward signal."""
-        self.fitness = (1 - FITNESS_ALPHA) * self.fitness + FITNESS_ALPHA * signal
+        raw = (1 - FITNESS_ALPHA) * self.fitness + FITNESS_ALPHA * signal
+        self.fitness = max(0.0, min(1.0, raw))
         self.age += 1
