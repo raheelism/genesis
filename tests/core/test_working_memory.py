@@ -33,7 +33,7 @@ def test_union_of_single_item():
 def test_union_contains_bits_from_both():
     wm = WorkingMemory()
     a = SDR(list(range(0, 20)))
-    b = SDR(list(range(100, 120)))
+    b = SDR(list(range(10, 30)))
     wm.push(a)
     wm.push(b)
     result = wm.union()

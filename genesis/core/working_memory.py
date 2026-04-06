@@ -22,7 +22,7 @@ class WorkingMemory:
             return SDR.zeros()
         result = slots[0]
         for sdr in slots[1:]:
-            result = result.union(sdr)
+            result = result.compose(sdr)
         return result
 
     def clear(self):
