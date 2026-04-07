@@ -130,60 +130,106 @@ def fetch_squad(num_examples: int = 500, max_sentences: int = 10000,
 def fetch_generic_dialog(max_dialogs: int = 20000, max_sentences: int = 50000,
                          max_qa: int = 20000,
                          max_answer_words: int = 12) -> Tuple[List[str], List[Tuple[str, str]]]:
-    """Build generic conversational corpus from DailyDialog turns.
+    """Build generic conversational corpus from chat-style datasets.
 
-    Corpus: unique utterances from dialogs.
-    QA pairs: adjacent turn pairs (utterance_i -> utterance_{i+1}).
+    Prefers scriptless/parquet HF datasets so it works on environments where
+    dataset scripts are disabled (e.g., newer Kaggle images).
     """
-    print(f"Loading DailyDialog (up to {max_dialogs} dialogs)...")
+    print(f"Loading generic chat dataset (up to {max_dialogs} dialogs)...")
     try:
         from datasets import load_dataset
     except ImportError:
         print("ERROR: Install datasets: pip install datasets")
         return [], []
 
-    ds = load_dataset("daily_dialog", split="train")
+    ds = None
+    dataset_name = None
+    dataset_split = None
+    # Ordered by preference. These are commonly parquet-backed repos.
+    candidates = [
+        ("HuggingFaceH4/ultrachat_200k", "train_sft"),
+        ("HuggingFaceH4/ultrachat_200k", "train_gen"),
+        ("OpenAssistant/oasst1", "train"),
+    ]
+
+    for name, split in candidates:
+        try:
+            ds = load_dataset(name, split=split)
+            dataset_name, dataset_split = name, split
+            break
+        except Exception as e:
+            print(f"  Skipping {name}:{split} ({e})")
+
+    if ds is None:
+        print("ERROR: Could not load any generic chat dataset.")
+        print("Tip: try '--corpus squad --size large' for a reliable fallback.")
+        return [], []
+
+    print(f"  Using dataset: {dataset_name} [{dataset_split}]")
 
     corpus: List[str] = []
     qa_pairs: List[Tuple[str, str]] = []
     seen_sentences = set()
     seen_pairs = set()
 
+    def _clean_text(text: str) -> str:
+        return re.sub(r"\s+", " ", str(text)).strip()
+
+    def _add_pair(q: str, a: str):
+        q = _clean_text(q)
+        a = _clean_text(a)
+        if len(q) < 3 or len(a) < 1:
+            return
+        answer_words = len(a.split())
+        if answer_words < 1 or answer_words > max_answer_words:
+            return
+        key = (q.lower(), a.lower())
+        if key in seen_pairs:
+            return
+        seen_pairs.add(key)
+        qa_pairs.append((q, a))
+
+    def _add_utterance(text: str):
+        text = _clean_text(text)
+        if len(text) < 3:
+            return
+        if text not in seen_sentences:
+            seen_sentences.add(text)
+            corpus.append(text)
+
     for i, ex in enumerate(ds):
         if i >= max_dialogs:
             break
 
-        dialog = ex.get("dialog", [])
-        if not isinstance(dialog, list) or len(dialog) < 2:
-            continue
+        # Ultrachat-style format: list of role/content messages.
+        if isinstance(ex.get("messages"), list):
+            msgs = ex["messages"]
+            normalized = []
+            for m in msgs:
+                if not isinstance(m, dict):
+                    continue
+                role = str(m.get("role", "")).lower().strip()
+                content = _clean_text(m.get("content", ""))
+                if content:
+                    _add_utterance(content)
+                    normalized.append((role, content))
 
-        cleaned = []
-        for utt in dialog:
-            text = re.sub(r"\s+", " ", str(utt)).strip()
-            if len(text) < 3:
-                continue
-            cleaned.append(text)
-            if text not in seen_sentences:
-                seen_sentences.add(text)
-                corpus.append(text)
-                if len(corpus) >= max_sentences:
-                    break
+            for j in range(len(normalized) - 1):
+                r1, t1 = normalized[j]
+                r2, t2 = normalized[j + 1]
+                if r1 in ("user", "human") and r2 in ("assistant", "bot", "gpt"):
+                    _add_pair(t1, t2)
+                    if len(qa_pairs) >= max_qa:
+                        break
 
-        for j in range(len(cleaned) - 1):
-            q = cleaned[j]
-            a = cleaned[j + 1]
-            if not q or not a:
-                continue
-            answer_words = len(a.split())
-            if answer_words < 1 or answer_words > max_answer_words:
-                continue
-            key = (q.lower(), a.lower())
-            if key in seen_pairs:
-                continue
-            seen_pairs.add(key)
-            qa_pairs.append((q, a))
-            if len(qa_pairs) >= max_qa:
-                break
+        # OASST-style fallback: single message text only. We still keep corpus,
+        # and derive weak QA from neighboring examples as a backup.
+        elif "text" in ex:
+            text = _clean_text(ex.get("text", ""))
+            if text:
+                _add_utterance(text)
+                if len(corpus) >= 2 and len(qa_pairs) < max_qa:
+                    _add_pair(corpus[-2], corpus[-1])
 
         if len(corpus) >= max_sentences and len(qa_pairs) >= max_qa:
             break
