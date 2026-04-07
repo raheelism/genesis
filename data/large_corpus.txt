@@ -1,0 +1,370 @@
+The sky is blue during the day.
+The sky turns red and orange at sunset.
+Stars appear in the sky at night.
+The moon reflects light from the sun.
+The sun is a star at the center of our solar system.
+Earth orbits the sun once every year.
+The moon orbits the earth once every month.
+Water covers most of the surface of the earth.
+Water flows downhill due to gravity.
+Water freezes into ice when it gets cold.
+Ice melts into water when it gets warm.
+Steam rises when water is heated to boiling.
+Fire produces heat and light.
+Fire needs oxygen to burn.
+Wind is air that moves across the earth.
+Rain falls from clouds when they become heavy with water.
+Snow falls when rain freezes before reaching the ground.
+Plants use sunlight to make food through photosynthesis.
+Trees are large plants with thick wooden trunks.
+Leaves fall from trees in autumn.
+Animals need food and water to survive.
+Dogs are loyal animals that live with humans.
+Cats are independent animals that hunt small prey.
+Birds have wings and most birds can fly.
+Fish live in water and breathe through gills.
+Sharks are large fish that live in the ocean.
+Dolphins are intelligent mammals that live in the ocean.
+Elephants are the largest land animals on earth.
+Lions are predators that hunt in groups called prides.
+Horses are fast animals used for transportation.
+The brain is the organ that controls thinking.
+The heart pumps blood through the body.
+Lungs bring oxygen into the body when we breathe.
+Bones give the body its structure and protect organs.
+Muscles allow the body to move.
+Food gives the body energy to function.
+Sleep allows the body to rest and repair itself.
+Exercise makes the body stronger and healthier.
+Humans use language to communicate with each other.
+Writing allows humans to record and share knowledge.
+Mathematics is the study of numbers and patterns.
+Science is the study of the natural world through observation.
+History records the events of the past.
+Geography studies the features of the earth.
+Technology uses scientific knowledge to solve problems.
+Computers process information very quickly.
+The internet connects computers around the world.
+Electricity powers most modern devices.
+Light travels faster than sound.
+Sound travels through air as waves of pressure.
+Gravity pulls objects toward each other.
+The earth has a magnetic field that protects it from solar wind.
+Volcanoes release molten rock from deep inside the earth.
+Earthquakes occur when tectonic plates shift.
+Mountains form when tectonic plates push together.
+Rivers carry water from mountains to the sea.
+Deserts are dry regions that receive very little rain.
+Forests are areas with many trees close together.
+Oceans are large bodies of salt water.
+Lakes are bodies of fresh water surrounded by land.
+Gold is a valuable yellow metal that does not rust.
+Iron is a strong metal used to make steel.
+Coal is a black rock that burns and produces energy.
+Oil is a liquid fuel found underground.
+Glass is made by melting sand at very high temperatures.
+Paper is made from wood pulp.
+Bread is made by baking dough made from flour and water.
+Sugar comes from sugar cane and sugar beets.
+Salt preserves food and adds flavor.
+Milk comes from cows and other mammals.
+Coffee comes from roasted coffee beans.
+Tea is made from the leaves of the tea plant.
+The atom is the smallest unit of an element.
+Hydrogen is the lightest and most abundant element in the universe.
+Oxygen is the gas that animals breathe to survive.
+Carbon forms the basis of all known life.
+DNA contains the genetic instructions for living organisms.
+Cells are the basic building blocks of all living things.
+Viruses cause many common diseases.
+Bacteria are microscopic organisms found everywhere.
+Vaccines train the immune system to fight diseases.
+The immune system protects the body from infection.
+Energy cannot be created or destroyed, only transformed.
+Heat flows from hot objects to cold objects.
+The speed of light is about 300000 kilometers per second.
+Black holes are regions of space with extremely strong gravity.
+Galaxies contain billions of stars.
+The universe began with the Big Bang about 14 billion years ago.
+Time passes more slowly near massive objects according to relativity.
+Planets are large objects that orbit stars.
+Comets are icy bodies that orbit the sun.
+Asteroids are rocky bodies that orbit the sun.
+The Amazon is the largest river in the world by water volume.
+The Nile is the longest river in the world.
+The Pacific Ocean is the largest ocean on earth.
+The Sahara is the largest hot desert in the world.
+Mount Everest is the highest mountain on earth.
+The Great Barrier Reef is the largest coral reef system.
+Antarctica is the coldest continent on earth.
+Africa is the second largest continent.
+Asia is the largest continent on earth.
+Europe is the smallest continent excluding Australia.
+Australia is both a country and a continent.
+Brazil is the largest country in South America.
+Russia is the largest country in the world by area.
+China has the largest population in the world.
+India is the second most populous country.
+The United States is located in North America.
+Canada is the second largest country in the world by area.
+Japan is an island nation in the Pacific Ocean.
+Germany is a country in central Europe.
+France is known for art and culture.
+The Great Wall of China was built to protect against invasions.
+The Pyramids of Giza were built as tombs for Egyptian pharaohs.
+The Roman Empire was one of the largest empires in history.
+Ancient Greece is known as the birthplace of democracy.
+The Renaissance was a period of great cultural and scientific growth.
+The Industrial Revolution transformed manufacturing in the 18th century.
+World War I lasted from 1914 to 1918.
+World War II lasted from 1939 to 1945.
+The United Nations was founded in 1945 to promote international peace.
+The moon landing occurred in 1969 when Apollo 11 landed on the moon.
+The internet was invented in the late 20th century.
+Photography was invented in the 19th century.
+The telephone was invented by Alexander Graham Bell.
+The airplane was invented by the Wright brothers in 1903.
+The steam engine helped launch the Industrial Revolution.
+The printing press was invented by Gutenberg in the 15th century.
+Charles Darwin proposed the theory of evolution by natural selection.
+Isaac Newton formulated the laws of gravity and motion.
+Albert Einstein developed the theory of relativity.
+Marie Curie discovered polonium and radium.
+Galileo Galilei was one of the first to use a telescope for astronomy.
+Leonardo da Vinci was an artist and inventor of the Renaissance.
+Shakespeare wrote many famous plays and sonnets.
+Plato and Aristotle were influential ancient Greek philosophers.
+Socrates is considered one of the founders of Western philosophy.
+The Bible is the holy book of Christianity.
+The Quran is the holy book of Islam.
+Buddhism teaches the path to end suffering through enlightenment.
+Hinduism is one of the oldest religions in the world.
+Philosophy asks fundamental questions about existence and knowledge.
+Logic is the study of valid reasoning and argumentation.
+Ethics is the branch of philosophy that studies right and wrong.
+Psychology is the science of mind and behavior.
+Sociology studies human society and social behavior.
+Economics studies how people produce and consume goods.
+Money is a medium of exchange used to trade goods and services.
+Inflation means prices rise and the purchasing power of money falls.
+A democracy is a system where citizens vote to choose their leaders.
+A monarchy is a system of government led by a king or queen.
+Laws are rules enforced by a government to maintain order.
+Justice systems use courts and judges to resolve disputes.
+Education helps people learn skills and knowledge.
+Universities are institutions of higher education.
+Libraries store large collections of books and information.
+Art expresses human creativity through visual, auditory, or performance forms.
+Music is organized sound that expresses emotion.
+Mathematics includes algebra, geometry, calculus, and statistics.
+Addition and subtraction are the two most basic arithmetic operations.
+Multiplication is repeated addition.
+Division is the process of splitting a number into equal parts.
+A prime number is divisible only by one and itself.
+Pi is the ratio of a circle's circumference to its diameter.
+The Pythagorean theorem relates the sides of a right triangle.
+Calculus studies rates of change and accumulation.
+Statistics helps analyze and interpret data.
+Probability measures the likelihood of events occurring.
+Chemistry is the study of matter and its transformations.
+Physics is the study of energy and forces in nature.
+Biology is the science of living organisms.
+Ecology studies the relationships between organisms and their environment.
+Botany is the scientific study of plants.
+Zoology is the scientific study of animals.
+Genetics studies how traits are inherited through genes.
+Evolution describes how species change over time.
+Natural selection favors traits that improve survival and reproduction.
+Photosynthesis converts sunlight into chemical energy in plants.
+Respiration converts glucose into energy in living cells.
+The circulatory system transports blood throughout the body.
+The nervous system transmits signals between the brain and body.
+The digestive system breaks down food into nutrients.
+The skeletal system supports the body and protects internal organs.
+The respiratory system takes in oxygen and releases carbon dioxide.
+Proteins are large molecules essential for life.
+Carbohydrates provide energy to living organisms.
+Fats store energy and support cell membranes.
+Vitamins are essential nutrients needed in small amounts.
+Minerals such as calcium and iron are needed for body function.
+The ecosystem includes all living and non-living things in an area.
+Climate describes the average weather patterns of a region.
+Weather is the short-term state of the atmosphere in a location.
+The greenhouse effect occurs when gases trap heat in the atmosphere.
+Global warming is caused by increased greenhouse gases.
+Renewable energy comes from sources that are replenished naturally.
+Solar energy is captured from sunlight using solar panels.
+Wind energy is generated using turbines turned by wind.
+Hydroelectric power is generated by flowing water.
+Fossil fuels include coal, oil, and natural gas.
+Pollution harms the environment and living organisms.
+Recycling reduces waste and conserves resources.
+Conservation protects natural ecosystems and biodiversity.
+The water cycle describes how water moves through the environment.
+Clouds form when water vapor condenses in the atmosphere.
+The nitrogen cycle moves nitrogen between air, soil, and organisms.
+Soil is made of minerals, organic matter, water, and air.
+Farming involves growing crops and raising livestock for food.
+Irrigation supplies water to farmland using channels or pipes.
+Fertilizers add nutrients to soil to improve crop growth.
+Deforestation is the large-scale removal of forests.
+Urbanization is the growth of cities as more people move there.
+Transportation systems move people and goods from place to place.
+Bridges span rivers and valleys to allow road or rail travel.
+Tunnels pass through mountains or under bodies of water.
+Satellites orbit the earth and provide communication and navigation services.
+Smartphones combine telephone, computer, and camera in one device.
+Artificial intelligence enables machines to perform intelligent tasks.
+Robots are machines programmed to perform physical tasks automatically.
+Programming languages allow humans to give instructions to computers.
+Algorithms are step-by-step procedures for solving problems.
+Data is information stored and processed by computers.
+The cloud refers to storing and accessing data over the internet.
+Cybersecurity protects computer systems from attacks.
+Software is the set of instructions that tells a computer what to do.
+Hardware refers to the physical components of a computer.
+Memory stores data for quick access by a computer processor.
+The CPU is the central processing unit that runs a computer.
+Networking connects computers so they can share information.
+The World Wide Web is a system of documents linked over the internet.
+A database stores and organizes large amounts of structured information.
+Encryption protects data by converting it to an unreadable format.
+Optical fibers carry data as pulses of light over long distances.
+Wireless communication transmits data without physical connections.
+Radio waves are used in radio, television, and mobile communication.
+X-rays are used in medicine to image bones inside the body.
+Ultrasound uses sound waves to create images of internal organs.
+MRI machines use magnetic fields to create detailed body images.
+Vaccines prevent disease by teaching the immune system to recognize pathogens.
+Antibiotics kill or inhibit the growth of bacteria.
+Surgery involves operating on the body to treat disease or injury.
+Anesthesia prevents patients from feeling pain during surgery.
+Blood types are classified as A, B, AB, or O.
+The heart beats about 70 times per minute on average.
+The brain uses about 20 percent of the body's energy.
+The human body contains about 37 trillion cells.
+Bones are made of calcium and phosphorus.
+The skin is the largest organ of the human body.
+Neurons are the cells of the nervous system that transmit signals.
+Hormones are chemical messengers produced by glands.
+The liver filters toxins from the blood.
+The kidneys filter waste from the blood to produce urine.
+The stomach digests food using acids and enzymes.
+The small intestine absorbs nutrients from digested food.
+The large intestine absorbs water and forms solid waste.
+Vision works by the eye focusing light onto the retina.
+Hearing works by sound waves vibrating the eardrum.
+The nose detects chemicals in the air as smell.
+Taste is detected by taste buds on the tongue.
+Touch receptors in the skin detect pressure, heat, and pain.
+Emotions are mental states that influence behavior and thoughts.
+Memory stores past experiences and knowledge in the brain.
+Learning changes the brain by forming new connections between neurons.
+Language is a uniquely human ability to communicate complex ideas.
+Children learn language through exposure and imitation.
+Grammar describes the rules for combining words into sentences.
+Nouns name people, places, and things.
+Verbs describe actions or states.
+Adjectives describe qualities of nouns.
+Adverbs modify verbs, adjectives, or other adverbs.
+A sentence must have a subject and a predicate.
+Reading and writing are fundamental literacy skills.
+Stories have a beginning, middle, and end.
+Poetry uses rhythm, imagery, and figurative language.
+Metaphors compare two things by saying one is the other.
+Similes compare two things using like or as.
+Logic uses premises and conclusions to form valid arguments.
+A hypothesis is a testable prediction made before an experiment.
+An experiment tests a hypothesis under controlled conditions.
+Evidence is information that supports or refutes a hypothesis.
+Peer review checks scientific work for errors before publication.
+Models help scientists understand complex systems.
+Simulation uses computers to model real-world processes.
+Measurement is the process of assigning numbers to physical quantities.
+The metric system uses meters, kilograms, and seconds as base units.
+Temperature is measured in Celsius or Fahrenheit.
+Pressure is force applied over an area.
+Density is mass divided by volume.
+Speed is distance divided by time.
+Acceleration is the rate of change of velocity.
+Force equals mass times acceleration according to Newton.
+Work is done when a force moves an object.
+Power is the rate at which work is done.
+Waves carry energy without transporting matter.
+Frequency is the number of wave cycles per second.
+Wavelength is the distance between two consecutive wave crests.
+Electromagnetic waves include radio, microwave, infrared, visible, ultraviolet, X-ray, and gamma rays.
+The color of light depends on its wavelength.
+White light is a mixture of all colors of the spectrum.
+A prism separates white light into its component colors.
+Mirrors reflect light.
+Lenses refract light to focus or scatter it.
+A telescope collects and magnifies distant light sources.
+A microscope magnifies small objects too tiny to see with the naked eye.
+Atoms consist of protons, neutrons, and electrons.
+Protons have a positive charge and are found in the nucleus.
+Electrons have a negative charge and orbit the nucleus.
+Neutrons have no charge and are found in the nucleus.
+The periodic table organizes elements by their atomic number.
+Chemical bonds form when atoms share or transfer electrons.
+A molecule is two or more atoms bonded together.
+Compounds are substances made of two or more different elements.
+Acids have a pH below seven and donate protons.
+Bases have a pH above seven and accept protons.
+Oxidation involves the loss of electrons from a substance.
+Reduction involves the gain of electrons by a substance.
+Nuclear reactions release energy by splitting or fusing atomic nuclei.
+Radioactivity is the emission of particles or energy from unstable nuclei.
+The half-life of a radioactive element is the time for half of it to decay.
+Stars form from clouds of gas and dust collapsing under gravity.
+The life cycle of a star depends on its mass.
+A supernova is a massive explosion at the end of a large star's life.
+A neutron star is an extremely dense remnant of a supernova.
+The Milky Way is the galaxy that contains our solar system.
+Dark matter does not emit light but its gravity affects galaxies.
+Dark energy is believed to be causing the expansion of the universe.
+Space is mostly empty but contains radiation and particles.
+Astronauts travel to space in rockets or space shuttles.
+The International Space Station orbits earth and hosts scientific research.
+Mars is the fourth planet from the sun and is called the Red Planet.
+Venus is the hottest planet in the solar system.
+Jupiter is the largest planet in the solar system.
+Saturn is known for its large ring system.
+Uranus and Neptune are called ice giants.
+Mercury is the smallest planet and closest to the sun.
+The asteroid belt lies between Mars and Jupiter.
+Pluto is classified as a dwarf planet in the outer solar system.
+Seasons are caused by the tilt of the earth's axis.
+The equator is the imaginary line around the middle of the earth.
+The poles are the northernmost and southernmost points on earth.
+Ocean currents are driven by wind and differences in water temperature and salinity.
+The tides are caused by the gravitational pull of the moon.
+Hurricanes are powerful tropical storms that form over warm ocean water.
+Tornadoes are rotating columns of air that extend from thunderstorms to the ground.
+Lightning is an electrical discharge in a thunderstorm.
+Thunder is the sound caused by the rapid expansion of air heated by lightning.
+Rainbows are caused by refraction and reflection of sunlight in water droplets.
+Fossils are the preserved remains of ancient organisms.
+Dinosaurs were large reptiles that went extinct 66 million years ago.
+Mammals evolved after the extinction of the dinosaurs.
+Primates include monkeys, apes, and humans.
+Homo sapiens is the scientific name for modern humans.
+Early humans used stone tools during the Stone Age.
+Agriculture began about 10000 years ago and allowed civilization to develop.
+Cities first developed in Mesopotamia and along river valleys.
+Trade allowed ancient civilizations to exchange goods and ideas.
+Language and writing allowed knowledge to be preserved and transmitted.
+Religion gave early human societies shared beliefs and moral codes.
+Art and music have been part of human culture since prehistoric times.
+Human rights are the basic freedoms and protections owed to all people.
+Freedom of speech allows people to express opinions without censorship.
+Education is considered a fundamental human right.
+Health care provides treatment and prevention of disease.
+Clean water and sanitation are essential for human health.
+Global cooperation helps address shared challenges like climate change.
+The scientific method involves observation, hypothesis, experiment, and conclusion.
+Theories in science are well-tested explanations supported by evidence.
+Mathematics is the language used to describe the laws of nature.
+Computers have transformed every field of human knowledge.
+Artificial intelligence may reshape how humans work and think.
+The future of science depends on curiosity, funding, and collaboration.

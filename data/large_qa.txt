@@ -1,0 +1,101 @@
+what color is the sky|blue
+what does fire produce|heat and light
+what do animals need to survive|food and water
+where do fish live|water
+what is the sun|star
+what covers most of the earth|water
+what do plants use to make food|sunlight
+what pumps blood through the body|heart
+what do lungs do|bring oxygen into the body
+what is the study of numbers|mathematics
+what powers most modern devices|electricity
+what travels faster than sound|light
+what pulls objects toward each other|gravity
+what is the smallest unit of an element|atom
+what do vaccines do|train the immune system
+what cannot be created or destroyed|energy
+what began with the Big Bang|universe
+what are the building blocks of living things|cells
+what contains genetic instructions|dna
+what is the largest land animal|elephant
+what is the largest river by volume|amazon
+what is the longest river in the world|nile
+what is the largest ocean|pacific
+what is the highest mountain|everest
+what is the largest country by area|russia
+what is the largest continent|asia
+what is the study of living organisms|biology
+what studies forces and energy in nature|physics
+what studies matter and its transformations|chemistry
+what is the study of society|sociology
+what is the study of mind and behavior|psychology
+what is the study of the economy|economics
+what is the theory of evolution|natural selection
+who proposed the theory of evolution|darwin
+who formulated the laws of gravity|newton
+who developed the theory of relativity|einstein
+what did marie curie discover|radium
+what did the printing press do|spread knowledge
+what happened in 1969|moon landing
+what ended in 1945|world war
+what is the study of valid reasoning|logic
+what is ethics concerned with|right and wrong
+what is a prime number|divisible only by one and itself
+what is pi|ratio of circumference to diameter
+what describes rates of change|calculus
+what is the central processing unit|processor
+what stores data in a computer|memory
+what protects computer systems from attacks|cybersecurity
+what is an algorithm|step-by-step procedure
+what is artificial intelligence|machines performing intelligent tasks
+what is the circulatory system for|transport blood
+what does the nervous system do|transmit signals
+what does the digestive system do|break down food
+what is the skin|largest organ
+what do neurons do|transmit signals
+what filters toxins from the blood|liver
+what is the largest planet|jupiter
+what planet is known for rings|saturn
+what is the closest planet to the sun|mercury
+what causes seasons|tilt of the earth axis
+what is the milky way|galaxy
+what are fossils|preserved remains of ancient organisms
+when did agriculture begin|ten thousand years ago
+what are hurricanes|tropical storms
+what causes tides|gravitational pull of the moon
+what is a hypothesis|testable prediction
+what is peer review|checks scientific work for errors
+what is the metric system based on|meters kilograms seconds
+what is density|mass divided by volume
+what is speed|distance divided by time
+what is force equal to|mass times acceleration
+what do mirrors do|reflect light
+what does a telescope do|magnify distant light
+what is a molecule|two or more atoms bonded together
+what is radioactivity|emission of particles from unstable nuclei
+what causes lightning|electrical discharge
+what causes rainbows|refraction of sunlight in water
+what went extinct 66 million years ago|dinosaurs
+what is the scientific name for modern humans|homo sapiens
+what do acids do|donate protons
+what do lenses do|refract light
+what is oxidation|loss of electrons
+what are stars formed from|gas and dust
+what is a supernova|massive explosion of a star
+what is dark matter|invisible matter that affects galaxies
+what is the hottest planet|venus
+what is the red planet|mars
+what are ocean currents driven by|wind and temperature
+what is a tornado|rotating column of air
+what is thunder|sound from air heated by lightning
+what do antibiotics kill|bacteria
+what do hormones do|send chemical messages
+what is the half-life of radioactive elements|time for half to decay
+what is the greenhouse effect|gases trapping heat in atmosphere
+what is renewable energy|energy from sources that replenish naturally
+what is solar energy captured with|solar panels
+what is deforestation|removal of forests
+what is urbanization|growth of cities
+what is a democracy|citizens vote to choose leaders
+what are laws|rules enforced by government
+what do universities provide|higher education
