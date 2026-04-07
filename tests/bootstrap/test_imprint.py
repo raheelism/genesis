@@ -78,3 +78,33 @@ def test_phase3_adds_reasoning_cells():
     enc.register_vocab(tok.vocab)
     imp.phase3(qa_pairs, tok, enc, binder, org)
     assert org.cell_count() > 0
+
+def test_phase3_registers_phrases_in_store():
+    from genesis.generation.phrase_store import PhraseStore
+    org = Organism()
+    enc = Encoder()
+    tok = Tokenizer()
+    binder = Binder()
+    qa = [("what does fire produce", "heat and light")]
+    for q, a in qa:
+        tok.tokenize(q)
+        tok.tokenize(a)
+    enc.register_vocab(tok.vocab)
+    ps = PhraseStore()
+    imp = Imprinter()
+    imp.phase3(qa, tok, enc, binder, org, phrase_store=ps)
+    assert len(ps) == 1
+
+def test_phase3_without_phrase_store_still_works():
+    org = Organism()
+    enc = Encoder()
+    tok = Tokenizer()
+    binder = Binder()
+    qa = [("what is water", "liquid")]
+    for q, a in qa:
+        tok.tokenize(q)
+        tok.tokenize(a)
+    enc.register_vocab(tok.vocab)
+    imp = Imprinter()
+    imp.phase3(qa, tok, enc, binder, org)   # no phrase_store arg
+    assert org.cell_count() > 0

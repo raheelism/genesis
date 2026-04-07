@@ -63,8 +63,11 @@ class Imprinter:
                     cell.add_rule(sdr, sent_sdr, confidence=0.5)
 
     def phase3(self, qa_pairs: List[Tuple[str, str]], tokenizer: Tokenizer,
-               encoder: Encoder, binder: Binder, organism: Organism):
-        """Create Reasoning Cells from structured QA pairs."""
+               encoder: Encoder, binder: Binder, organism: Organism,
+               phrase_store=None):
+        """Create Reasoning Cells from structured QA pairs.
+        If phrase_store is provided, registers the answer SDR -> answer string
+        so Verbalizer can emit exact phrases for compound answers."""
         for question, answer in qa_pairs:
             q_tokens = tokenizer.tokenize(question)
             a_tokens = tokenizer.tokenize(answer)
@@ -75,3 +78,5 @@ class Imprinter:
             cell.receptive_field = q_sdr
             cell.add_rule(q_sdr, a_sdr, confidence=1.0)
             organism.add_cell(cell)
+            if phrase_store is not None:
+                phrase_store.register(a_sdr, answer)
