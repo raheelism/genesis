@@ -34,15 +34,30 @@ class ForwardChain:
                working_memory: WorkingMemory,
                max_depth: int = MAX_DEPTH) -> ReasoningResult:
 
-        context = working_memory.union()
-        facts = query.union(context)
+        # Start facts from the query alone (20 bits). Unioning context upfront
+        # creates a 60+ bit SDR that dilutes both routing similarity (< THETA_FIRE)
+        # and rule precondition matching (< THETA_RULE). Context is preserved in
+        # working_memory but not merged into the initial fact set.
+        facts = query
+        route_sdr = query
         chain: List[ChainStep] = []
         confidence_path: List[float] = []
 
         for depth in range(max_depth):
-            active_cells = organism.route(facts)
+            active_cells = organism.route(route_sdr)
             if not active_cells:
                 break
+
+            # Context re-ranking: cells whose receptive field overlaps with
+            # working memory context are sorted first. Routing still uses the
+            # clean 20-bit query — this only changes the order cells are tried,
+            # ensuring contextually relevant cells fire before unrelated ones.
+            context = working_memory.union()
+            if context.popcount() > 0:
+                active_cells.sort(
+                    key=lambda c: c.receptive_field.similarity(context),
+                    reverse=True,
+                )
 
             new_facts: List[Tuple[SDR, float, Cell, Rule]] = []
             for cell in active_cells:
@@ -73,5 +88,7 @@ class ForwardChain:
                 )
 
             facts = facts.union(best_post)
+            # Route next depth on the new postcondition (still 20-bit clean SDR)
+            route_sdr = best_post
 
         return ReasoningResult(answer=None, chain=chain, confidence=0.0)
