@@ -1,19 +1,34 @@
+# genesis/generation/verbalizer.py
+from typing import Optional
 from genesis.core.sdr import SDR
 from genesis.perception.encoder import Encoder
+from genesis.generation.phrase_store import PhraseStore
 
 THETA_VERBALIZE = 0.05   # minimum similarity to include a token candidate
 
 
 class Verbalizer:
     """Converts a conclusion SDR back into a token sequence.
-    Generation is concept-first: find tokens that best cover the SDR bits."""
+
+    First checks PhraseStore for an exact registered phrase (covers multi-word
+    answers like 'heat and light'). Falls back to greedy bit-coverage
+    reconstruction if no registered phrase is close enough."""
+
+    def __init__(self, phrase_store: Optional[PhraseStore] = None):
+        self.phrase_store = phrase_store
 
     def verbalize(self, sdr: SDR, encoder: Encoder,
                   max_tokens: int = 10) -> str:
         if sdr.popcount() == 0:
             return "<unknown>"
 
-        # Score all registered tokens by SDR similarity
+        # 1. Check phrase store — exact registered phrase takes priority
+        if self.phrase_store is not None:
+            phrase = self.phrase_store.lookup(sdr)
+            if phrase is not None:
+                return phrase
+
+        # 2. Fall back: greedy token coverage
         scored = [
             (token, sdr.similarity(tok_sdr))
             for token, tok_sdr in encoder._vocab_sdrs.items()
@@ -25,10 +40,9 @@ class Verbalizer:
         if not scored:
             return "<unknown>"
 
-        # Greedily pick tokens that cover the most uncovered SDR bits
         covered = SDR.zeros()
         selected = []
-        for token, score in scored[:50]:   # search top-50 candidates
+        for token, score in scored[:50]:
             tok_sdr = encoder.encode_token(token)
             new_coverage = tok_sdr.similarity(sdr) - covered.similarity(tok_sdr)
             if new_coverage > 0:
