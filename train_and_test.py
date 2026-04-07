@@ -4,8 +4,9 @@ Train GENESIS on a large dataset and test with chat.
 Example:
   python train_and_test.py --corpus wikipedia --size medium --output my_colony.gen
   python train_and_test.py --corpus squad --output squad_colony.gen
+    python train_and_test.py --corpus generic --size large --output generic_colony.gen
 
-Corpus options: squad, wikipedia
+Corpus options: squad, wikipedia, generic
 Size options: small (1000 sentences), medium (10K), large (100K)
 """
 import argparse
@@ -76,7 +77,8 @@ def fetch_wikipedia(num_articles: int = 1000, num_sentences: int = 50000) -> Ite
     print(f"  Loaded {len(sentences)} sentences from {article_count} articles")
 
 
-def fetch_squad(num_examples: int = 500, max_sentences: int = 10000) -> Tuple[List[str], List[Tuple[str, str]]]:
+def fetch_squad(num_examples: int = 500, max_sentences: int = 10000,
+                max_qa: int = 100) -> Tuple[List[str], List[Tuple[str, str]]]:
     """Download SQuAD v1.1 validation set and extract corpus + QA pairs."""
     print(f"Loading SQuAD v1.1 (first {num_examples} examples)...")
     try:
@@ -117,11 +119,77 @@ def fetch_squad(num_examples: int = 500, max_sentences: int = 10000) -> Tuple[Li
         if 1 <= len(a.split()) <= 5:
             qa_pairs.append((q, a))
             seen_questions.add(q)
-        if len(qa_pairs) >= 100:
+        if len(qa_pairs) >= max_qa:
             break
 
     print(f"  Corpus: {len(corpus)} sentences")
     print(f"  QA pairs: {len(qa_pairs)} pairs")
+    return corpus, qa_pairs
+
+
+def fetch_generic_dialog(max_dialogs: int = 20000, max_sentences: int = 50000,
+                         max_qa: int = 20000,
+                         max_answer_words: int = 12) -> Tuple[List[str], List[Tuple[str, str]]]:
+    """Build generic conversational corpus from DailyDialog turns.
+
+    Corpus: unique utterances from dialogs.
+    QA pairs: adjacent turn pairs (utterance_i -> utterance_{i+1}).
+    """
+    print(f"Loading DailyDialog (up to {max_dialogs} dialogs)...")
+    try:
+        from datasets import load_dataset
+    except ImportError:
+        print("ERROR: Install datasets: pip install datasets")
+        return [], []
+
+    ds = load_dataset("daily_dialog", split="train")
+
+    corpus: List[str] = []
+    qa_pairs: List[Tuple[str, str]] = []
+    seen_sentences = set()
+    seen_pairs = set()
+
+    for i, ex in enumerate(ds):
+        if i >= max_dialogs:
+            break
+
+        dialog = ex.get("dialog", [])
+        if not isinstance(dialog, list) or len(dialog) < 2:
+            continue
+
+        cleaned = []
+        for utt in dialog:
+            text = re.sub(r"\s+", " ", str(utt)).strip()
+            if len(text) < 3:
+                continue
+            cleaned.append(text)
+            if text not in seen_sentences:
+                seen_sentences.add(text)
+                corpus.append(text)
+                if len(corpus) >= max_sentences:
+                    break
+
+        for j in range(len(cleaned) - 1):
+            q = cleaned[j]
+            a = cleaned[j + 1]
+            if not q or not a:
+                continue
+            answer_words = len(a.split())
+            if answer_words < 1 or answer_words > max_answer_words:
+                continue
+            key = (q.lower(), a.lower())
+            if key in seen_pairs:
+                continue
+            seen_pairs.add(key)
+            qa_pairs.append((q, a))
+            if len(qa_pairs) >= max_qa:
+                break
+
+        if len(corpus) >= max_sentences and len(qa_pairs) >= max_qa:
+            break
+
+    print(f"  Corpus: {len(corpus)} utterances")
+    print(f"  QA pairs: {len(qa_pairs)} turn pairs")
     return corpus, qa_pairs
 
 
@@ -180,19 +248,34 @@ def bootstrap_colony(corpus_path: str, qa_path: str = None, output_path: str = "
     return org, tok, enc, binder
 
 
-def test_colony(colony_path: str, test_prompts: List[str] = None):
+def test_colony(colony_path: str, test_prompts: List[str] = None,
+                qa_path: str = None, qa_prompt_count: int = 8):
     """Load a trained colony and test with chat."""
     print("\n" + "="*60)
     print("CHAT TEST")
     print("="*60)
 
     if test_prompts is None:
-        test_prompts = [
-            "Hello",
-            "What do you know?",
-            "Tell me something interesting.",
-            "Can you help me?",
-        ]
+        # Prefer in-distribution prompts from QA file when available.
+        if qa_path and os.path.exists(qa_path):
+            qa_prompts = []
+            with open(qa_path, encoding="utf-8") as f:
+                for line in f:
+                    parts = line.strip().split("|", 1)
+                    if len(parts) == 2 and parts[0].strip():
+                        qa_prompts.append(parts[0].strip())
+                    if len(qa_prompts) >= qa_prompt_count:
+                        break
+            if qa_prompts:
+                test_prompts = qa_prompts
+
+        if not test_prompts:
+            test_prompts = [
+                "Hello",
+                "What do you know?",
+                "Tell me something interesting.",
+                "Can you help me?",
+            ]
 
     from genesis.main import _build_components
 
@@ -217,7 +300,7 @@ def main():
     )
     parser.add_argument(
         "--corpus",
-        choices=["squad", "wikipedia"],
+        choices=["squad", "wikipedia", "generic"],
         default="squad",
         help="Corpus source (default: squad)"
     )
@@ -247,9 +330,9 @@ def main():
 
     # Determine dataset sizes
     size_config = {
-        "small": {"articles": 100, "sentences": 1000},
-        "medium": {"articles": 500, "sentences": 10000},
-        "large": {"articles": 2000, "sentences": 50000},
+        "small": {"articles": 100, "sentences": 1000, "qa_pairs": 100, "dialogs": 1000},
+        "medium": {"articles": 500, "sentences": 10000, "qa_pairs": 500, "dialogs": 5000},
+        "large": {"articles": 2000, "sentences": 50000, "qa_pairs": 2000, "dialogs": 20000},
     }
     config = size_config[args.size]
 
@@ -263,7 +346,11 @@ def main():
 
     # Prepare corpus and QA data
     corpus_file = f"corpus_{args.corpus}_{args.size}.txt"
-    qa_file = f"qa_{args.corpus}_{args.size}.txt" if args.corpus == "squad" else None
+    qa_file = (
+        f"qa_{args.corpus}_{args.size}.txt"
+        if args.corpus in ("squad", "generic")
+        else None
+    )
 
     if not args.skip_bootstrap or not os.path.exists(corpus_file):
         print(f"Preparing {args.corpus} dataset ({args.size})...\n")
@@ -271,9 +358,26 @@ def main():
         if args.corpus == "squad":
             corpus, qa_pairs = fetch_squad(
                 num_examples=config["articles"],
-                max_sentences=config["sentences"]
+                max_sentences=config["sentences"],
+                max_qa=config["qa_pairs"],
             )
             # Write corpus and QA to files
+            Path(corpus_file).write_text("\n".join(corpus), encoding="utf-8")
+            if qa_pairs:
+                Path(qa_file).write_text(
+                    "\n".join(f"{q}|{a}" for q, a in qa_pairs),
+                    encoding="utf-8"
+                )
+            print(f"  Saved corpus to: {corpus_file}")
+            if qa_file:
+                print(f"  Saved QA pairs to: {qa_file}")
+        elif args.corpus == "generic":
+            corpus, qa_pairs = fetch_generic_dialog(
+                max_dialogs=config["dialogs"],
+                max_sentences=config["sentences"],
+                max_qa=config["qa_pairs"] * 4,
+                max_answer_words=12,
+            )
             Path(corpus_file).write_text("\n".join(corpus), encoding="utf-8")
             if qa_pairs:
                 Path(qa_file).write_text(
@@ -299,7 +403,7 @@ def main():
         print(f"Skipping bootstrap, using existing: {args.output}")
 
     # Test
-    test_colony(args.output)
+    test_colony(args.output, qa_path=qa_file)
 
 
 if __name__ == "__main__":
