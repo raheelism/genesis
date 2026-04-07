@@ -31,8 +31,9 @@ def _rule_diversity(cell: Cell) -> float:
 class LifecycleManager:
 
     def should_divide(self, cell: Cell) -> bool:
-        return (len(cell.rules) > MAX_RULES or
-                _rule_diversity(cell) > THETA_SPLIT)
+        # Only apply entropy-based split when cell has enough rules to be meaningful
+        entropy_split = (len(cell.rules) >= 20 and _rule_diversity(cell) > THETA_SPLIT)
+        return len(cell.rules) > MAX_RULES or entropy_split
 
     def divide(self, cell: Cell, organism: Organism):
         """Split cell into two daughters by clustering rules."""
