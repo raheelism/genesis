@@ -23,23 +23,24 @@ def test_union_of_empty_is_zeros():
     result = wm.union()
     assert result.popcount() == 0
 
-def test_union_of_single_item():
+def test_union_contains_bits_from_both():
+    wm = WorkingMemory()
+    a = SDR(list(range(0, 20)))
+    b = SDR(list(range(100, 120)))   # non-overlapping — both must survive
+    wm.push(a)
+    wm.push(b)
+    result = wm.union()
+    # uncapped OR: result must overlap with BOTH concepts
+    assert result.similarity(a) > 0
+    assert result.similarity(b) > 0
+
+def test_union_single_item_similarity_is_one():
+    """Single-item union should be identical to the original SDR."""
     wm = WorkingMemory()
     sdr = SDR.random()
     wm.push(sdr)
     result = wm.union()
     assert result.similarity(sdr) == pytest.approx(1.0)
-
-def test_union_contains_bits_from_both():
-    wm = WorkingMemory()
-    a = SDR(list(range(0, 20)))
-    b = SDR(list(range(10, 30)))
-    wm.push(a)
-    wm.push(b)
-    result = wm.union()
-    # result should overlap with both a and b
-    assert result.similarity(a) > 0
-    assert result.similarity(b) > 0
 
 def test_clear_empties_memory():
     wm = WorkingMemory()

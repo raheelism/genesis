@@ -16,13 +16,16 @@ class WorkingMemory:
         self._slots.append(sdr)
 
     def union(self) -> SDR:
-        """Compose all active SDRs into a single context pattern."""
+        """Merge all active SDRs into an uncapped context pattern (OR without bit-capping).
+        Returns an SDR that may have >20 active bits — this is intentional.
+        Working memory feeds into ForwardChain which already uses uncapped union for facts,
+        so a capped 20-bit result would silently drop concepts registered at higher indices."""
         slots = list(self._slots)
         if not slots:
             return SDR.zeros()
         result = slots[0]
         for sdr in slots[1:]:
-            result = result.compose(sdr)
+            result = result.union(sdr)
         return result
 
     def clear(self):
