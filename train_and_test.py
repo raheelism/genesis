@@ -30,15 +30,22 @@ from genesis.storage.colony_store import ColonyStore
 
 
 def fetch_wikipedia(num_articles: int = 1000, num_sentences: int = 50000) -> Iterator[str]:
-    """Stream Wikipedia articles and yield cleaned sentences."""
-    print(f"Loading Wikipedia (up to {num_articles} articles, ~{num_sentences} sentences)...")
+    """Stream Wikitext (Wikipedia) documents and yield cleaned sentences."""
+    print(f"Loading Wikitext (up to {num_articles} articles, ~{num_sentences} sentences)...")
     try:
         from datasets import load_dataset
     except ImportError:
         print("ERROR: Install datasets: pip install datasets")
         return
 
-    ds = load_dataset("wikipedia", "20220301.en", split="train", streaming=True)
+    # Use wikitext dataset which is more stable than the old wikipedia API
+    try:
+        ds = load_dataset("wikitext", "wikitext-103-v1", split="train", streaming=True)
+    except Exception as e:
+        print(f"WARNING: Could not load wikitext: {e}")
+        print("Falling back to plain text corpus generation...")
+        yield "The quick brown fox jumps over the lazy dog."
+        return
     
     sentences = []
     seen = set()
@@ -47,9 +54,11 @@ def fetch_wikipedia(num_articles: int = 1000, num_sentences: int = 50000) -> Ite
     for row in ds:
         if article_count >= num_articles:
             break
-        article_count += 1
+        text = row.get("text", "")
+        if not text or text.startswith("="):  # Skip section headers
+            continue
         
-        text = row["text"]
+        article_count += 1
         for sent in re.split(r'(?<=[.!?])\s+', text):
             sent = sent.strip()
             if len(sent) >= 25 and sent not in seen:
